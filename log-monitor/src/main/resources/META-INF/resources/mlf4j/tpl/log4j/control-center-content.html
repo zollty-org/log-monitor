@@ -1,0 +1,49 @@
+<table id="rootLoggerInfo" style="margin-top: 5px; width: 800px;">
+  <tr>
+    <th width="70%">RootLoger的名称</th>
+    <th width="23%">RootLoger级别</th>
+    <th width="7%">操作</th>
+  </tr>
+  <tr>
+    <td id="rlName">{{rootLogger.name}}</td>
+    <td><select id="rlLevel" name="level">
+        <!-- 引入子模板 -->
+        {{include '../tpl/log4j/optionsTpl.html' rootLogger}}
+    </select></td>
+    <td><input onclick="modifyRootLogLev_btn(this);" type="button" value="修改" /></td>
+  </tr>
+</table>
+
+<table id="appenderInfo" style="margin-top: 5px; width: 800px;">
+  <tr>
+    <th width="70%">Appender的名称</th>
+    <th width="23%">Appender的级别</th>
+    <th width="7%">操作</th>
+  </tr>
+{{each appList as value index}}
+  <tr>
+    <td>{{value.name}}</td>
+    <td><select id="adLevel_{{index}}" name="level">
+        {{include '../tpl/log4j/optionsTpl.html' value}}
+    </select></td>
+    <td><input onclick="modifyAppLev_btn(this);" name="{{index}}" id="{{value.name}}" type="button" value="修改" /></td>
+  </tr>
+{{/each}}
+</table>
+
+<table id="loggerInfo" style="margin-top: 5px; width: 800px;">
+  <tr>
+    <th width="70%">Logger的名称</th>
+    <th width="23%">Logger的级别</th>
+    <th width="7%">操作</th>
+  </tr>
+{{each logList as value index}}
+  <tr>
+    <td>{{value.name}}</td>
+    <td><select id="lgLevel_{{index}}" name="level">
+        {{include '../tpl/log4j/optionsTpl.html' value}}
+    </select></td>
+    <td><input onclick="modifyLogLev_btn(this);" name="{{index}}" id="{{value.name}}" type="button" value="修改" /></td>
+  </tr>
+{{/each}}
+</table>

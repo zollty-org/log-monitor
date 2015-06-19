@@ -1,0 +1,63 @@
+@charset "utf-8";
+/**
+ * Some basic html tags for this site
+ * 
+ * 【基于最佳实践和精心调制】，若要修改，请注明
+ * @author zollty
+ * @since 2013-10-20
+ */
+html,body,div,span,iframe,p,pre,a,code,img,dl,dt,dd,ol,ul,li,fieldset,form,
+label,legend,table,caption,tbody,tfoot,tr,th,td{ margin:0; padding:0; border:0; font-size:100%; font:inherit; vertical-align:baseline;}
+
+body{font-family: "微软雅黑", Tahoma, Arial, sans-serif; background: #eee; }
+body,p,label,ol,ul,li,a,table,input,dl,dt,dd,textarea{font-size:14px;}
+
+input,label,select,option,textarea,button,fields{font-family: "微软雅黑", Tahoma, Arial, sans-serif;}
+a{font-family: "微软雅黑", Arial, sans-serif; }
+
+ol,ul,li{list-style: none;}
+table{ border-collapse:collapse; border-spacing: 0; }
+img { 
+	vertical-align:middle; 
+	border:0 none;
+}
+
+a:hover { 
+	color:#000; 
+	text-decoration:none; 
+	cursor:pointer;
+}
+a {
+	color:#0088CC; 
+	text-decoration:underline; 
+}
+
+td,th{
+	height:20px;
+	line-height:20px;
+	padding:2px 4px;
+	vertical-align:middle;
+	border:#aac1d6 1px solid; 
+	}
+td{ text-align:left; color:#666; }
+th{ background:#ccc; text-align:center; color:#3380c9; font-weight:normal; }
+
+/* Clear Fix */
+.clearfix:after {
+	content:".";
+	display:block;
+	clear:both;
+	visibility:hidden;
+	line-height:0;
+	height:0;
+}
+.clearfix {
+	display:inline-block;
+}
+html[xmlns] .clearfix {
+	display:block;
+}
+* html .clearfix {
+	heigth: 1%;
+}
+/* end of clearfix */

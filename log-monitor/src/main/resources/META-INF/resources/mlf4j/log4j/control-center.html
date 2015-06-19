@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>日志监控中心(Log4j)</title>
+<link href="../css/main.css" rel="stylesheet"  type="text/css" />
+
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/json2.js"></script>
+<script type="text/javascript" src="../js/waitingbox.js"></script>
+<script type="text/javascript" src="../js/zollty-util.js"></script>
+<script type="text/javascript" src="../js/zollty-tmpl.js"></script>
+</head>
+<body>
+<br />
+<br />
+
+<div id="main-wrapper" style="margin: 5px auto; width: 800px;">
+
+  <table style="margin-top: 5px; width: 800px;">
+    <tr>
+      <td width="93%"><input id="loggerName" name="loggerName" type="text" value="" size="72" />输入日志名称,如:com.travelsky</td>
+      <td><input type="button" onclick="queryLogInfo();" value="查询" /></td>
+    </tr>
+  </table>
+
+  <div id="main-content"></div>
+  
+</div>
+
+<script type="text/javascript">
+
+  $(function() {
+  	queryLogInfo();
+  });
+  
+  //查询日志配置的详细内容
+  function queryLogInfo(){
+	  var uri = "mlf4j/log4j/show-config-details";
+      var url = zt.getBaseURL() + uri;
+      waitingbox.show(); // 弹出提示： 正在处理，请稍后....
+      $.post(url, {
+        "loggerName" : $("#loggerName").val()
+      }, function(data) {
+        waitingbox.hide(); // 关闭提示
+        assembleDataTable(data);
+      });
+  }
+  
+  function modifyRootLogLev_btn(obj) {
+	  var uri = "mlf4j/log4j/modify-rootLogger-level";
+      var url = zt.getBaseURL() + uri;
+      var level = $("#rlLevel").val();
+      if (level == '') {
+        alert("日志级别(Logger Level)不能为空");
+        return;
+      }
+      waitingbox.show(); // 弹出提示： 正在处理，请稍后....
+      $.post(url, {
+        "level" : level
+      }, function(data) {
+        waitingbox.hide(); // 关闭提示
+        if (data == 'OK') {
+        	modifySuccess(obj);
+        }
+      });
+  }
+  
+  function modifyAppLev_btn(obj) {
+    var uri = "mlf4j/log4j/modify-appender-level";
+    var url = zt.getBaseURL() + uri;
+    var btnObj = $(obj);
+    var id = "#adLevel_"+btnObj.attr("name");
+    var level = $(id).val();
+    if (level == '') {
+      alert("Appender的级别不能为空");
+      return;
+    }
+    var name = btnObj.attr("id");
+    waitingbox.show(); // 弹出提示： 正在处理，请稍后....
+    $.post(url, {
+      "level" : level,
+      "name"  : name
+    }, function(data) {
+      waitingbox.hide(); // 关闭提示
+      if (data == 'OK') {
+    	  modifySuccess(obj);
+      }
+    });
+  }
+  
+  function modifyLogLev_btn(obj) {
+    var uri = "mlf4j/log4j/modify-logger-level";
+    var url = zt.getBaseURL() + uri;
+    var btnObj = $(obj);
+    var id = "#lgLevel_"+btnObj.attr("name");
+    var level = $(id).val();
+    if (level == '') {
+      alert("Logger的级别不能为空");
+      return;
+    }
+    var name = btnObj.attr("id");
+    waitingbox.show(); // 弹出提示： 正在处理，请稍后....
+    $.post(url, {
+      "level" : level,
+      "name"  : name
+    }, function(data) {
+      waitingbox.hide(); // 关闭提示
+      if (data == 'OK') {
+    	  modifySuccess(obj);
+      }
+    });
+  }
+  
+  function modifySuccess(obj) {
+	var e1 = $(obj).parent().prev();
+  	e1.css({backgroundColor:"#CCE8CF"});
+  	e1.prev().css({backgroundColor:"#CCE8CF"});
+  	alert("修改成功");
+  }
+  
+  function assembleDataTable(data){
+    var content = zollty.render('../tpl/log4j/control-center-content.html', data);
+    $("#main-content").html( content );
+  }
+  
+</script>
+</body>
+</html>

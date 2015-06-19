@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>日志监控中心(Mlf4j)</title>
+<link href="../css/main.css" rel="stylesheet"  type="text/css" />
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/json2.js"></script>
+<script type="text/javascript" src="../js/waitingbox.js"></script>
+<script type="text/javascript" src="../js/zollty-util.js"></script>
+<script type="text/javascript" src="../js/zollty-tmpl.js"></script>
+</head>
+<body>
+<br />
+  <div style="margin: 5px auto; width: 600px; text-align: center; font-size: 16px; font-weight: bold;">
+    Logger调用次数统计
+  </div>
+
+  <table style="margin: 5px auto; width: 600px;">
+    <tr id="loggerExeInfo">
+      <th>Logger名称</th>
+      <th>TRACE</th>
+      <th>DEBUG</th>
+      <th>INFO</th>
+      <th>WARN</th>
+      <th>ERROR</th>
+    </tr>
+  </table>
+
+<script type="text/javascript">
+$(function() {
+	  // 查询日志配置的详细内容
+	  var uri = "mlf4j/showLoggerExeInfo";
+	  var url = zt.getBaseURL() + uri;
+	  waitingbox.show(); // 弹出提示： 正在处理，请稍后....
+	  $.get(url, function(data) {
+		  waitingbox.hide(); // 关闭提示
+	  	assembleDataTable(jQuery.parseJSON(data));
+	  });
+});
+
+function assembleDataTable(data){
+	var html = zollty.render('../tpl/mlf4j/loggerExeInfo.html', data);
+    $("#loggerExeInfo").after(html);
+}
+</script>
+</body>
+</html>

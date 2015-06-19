@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+
+	<!-- ZolltyMVC Config -->
+	<listener>
+		<listener-class>org.zollty.framework.mvc.ContextLoaderListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>_zollty_mvc_context</param-name>
+		<param-value>classpath:zollty.mvc.properties</param-value>
+	</context-param>
+	<servlet>
+		<servlet-name>zolltyMVC</servlet-name>
+		<servlet-class>org.zollty.framework.mvc.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>zolltyMVC</servlet-name>
+		<url-pattern>/mlf4j/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>LogConfigAction</servlet-name>
+		<servlet-class>org.zollty.log.servlet.LogConfigAction</servlet-class>
+		<init-param>
+			<param-name>logCfgJspPath</param-name>
+			<param-value>/mlf4j/vf/logConfig</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LogConfigAction</servlet-name>
+		<url-pattern>/logcfg.cfg</url-pattern>
+	</servlet-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+
+</web-app>

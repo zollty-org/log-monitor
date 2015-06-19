@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Log4j配置文件管理</title>
+<link href="../css/main.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/json2.js"></script>
+<script type="text/javascript" src="../js/zollty-util.js"></script>
+<script type="text/javascript" src="../js/waitingbox.js"></script>
+<style type="text/css">
+.wpdiv {
+  width: 120px;
+  text-align: right;
+  display: inline-block;
+  display: -moz-inline-stack;
+  zoom: 1;
+  *display: inline;
+}
+</style>
+</head>
+<body>
+
+<div>
+  <div style="font-size: 16px; font-weight: bold;">Log4j配置如下：</div>
+  <textarea id="config_file_content" rows="25" cols="180"></textarea>
+  <br />
+  <div class="wpdiv" style="width:200px;"></div><input id="modify_config_btn" type="button" value="修改配置" size="24" />
+</div>
+
+
+
+<script type="text/javascript">
+$(function() {
+	  // 查询日志配置的详细内容
+	  var uri = "mlf4j/log4j/show-config-file";
+	  var url = zt.getBaseURL() + uri;
+	  waitingbox.show(); // 弹出提示： 正在处理，请稍后....
+	  $.get(url, function(data) {
+	  	waitingbox.hide(); // 关闭提示
+	  	$("#config_file_content").val(data);
+	  });
+});
+
+$(function() {
+	// 修改RootLogger的输出级别
+	$("#modify_config_btn").click(function() {
+		if(!confirm("你确定要修改Log4j配置吗？（该配置会覆盖原来的配置）")) {
+			return;
+		}
+		var uri = "mlf4j/log4j/refresh-config";
+		var url = zt.getBaseURL() + uri;
+		waitingbox.show(); // 弹出提示： 正在处理，请稍后....
+		$.post(url, {
+			"configStr" : $("#config_file_content").val()
+		}, function(data) {
+			waitingbox.hide(); // 关闭提示
+			if (data == 'OK') {
+				alert("修改成功");
+			} else {
+				alert("修改失败："+data);
+			}
+		});
+	});
+});
+</script>
+</body>
+</html>
