@@ -27,7 +27,6 @@ import java.util.Properties;
 
 import org.zollty.framework.core.annotation.Component;
 import org.zollty.framework.util.MvcUtils;
-import org.zollty.log.LogFactory;
 import org.zollty.log.LogFactory.LogManager;
 import org.zollty.log.LogUtils;
 import org.zollty.log.LoggerExeInfo;
@@ -56,7 +55,7 @@ public class Mlf4jConfigServiceImpl implements IMlf4jConfigService {
             throw new NestedRuntimeException(e);
         }
         Map<String, String> pmap = LogUtils.covertProperties2Map(props);
-        LogFactory.refreshZolltyLogConfig(pmap);
+        LogManager.refreshZolltyLogConfig(pmap);
     }
 
     @Override
