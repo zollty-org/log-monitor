@@ -26,7 +26,7 @@
 	</appender>
 	
 	<appender name="debugAppender" class="org.zollty.log.log4j.DailyRollingFileAppender">
-		<param name="File" value="/opt/applog/proj-debug.log" />
+		<param name="File" value="/tmp/proj-debug.log" />
 		<!-- 默认DEBUG，可以动态修改成TRACE -->
 		<param name="threshold" value="DEBUG" />
 		<!-- 默认按小时(HH)分割文件名 -->
@@ -42,7 +42,7 @@
 	</appender>
     
     <appender name="infoAppender" class="org.zollty.log.log4j.DailyRollingFileAppender">  
-        <param name="File" value="/opt/applog/proj-info.log" /> 
+        <param name="File" value="/tmp/proj-info.log" /> 
         <param name="threshold" value="INFO" />  
         <param name="DatePattern" value="'.'yyyy-MM-dd" />
         <param name="append" value="true" />
@@ -56,7 +56,7 @@
     </appender>
   	
     <appender name="errorAppender" class="org.zollty.log.log4j.DailyRollingFileAppender">
-        <param name="File" value="/opt/applog/proj-error.log" />
+        <param name="File" value="/tmp/proj-error.log" />
         <param name="threshold" value="ERROR" />
         <param name="DatePattern" value="'.'yyyy-MM-dd" />
         <param name="append" value="true" />
@@ -71,7 +71,7 @@
 	
 	<!-- order模块专用的Appender -->
 	<appender name="orderModulAppender" class="org.zollty.log.log4j.DailyRollingFileAppender">
-        <param name="File" value="/opt/applog/proj-modul-order.log" />
+        <param name="File" value="/tmp/proj-modul-order.log" />
         <param name="DatePattern" value="'.'yyyy-MM-dd" />
         <param name="append" value="true" />
         <!-- 512 Byte为一个写单元，提高日志写入文件的效率
@@ -84,7 +84,7 @@
     </appender>
     <!-- user模块专用的Appender -->
     <appender name="userModulAppender" class="org.zollty.log.log4j.DailyRollingFileAppender">
-        <param name="File" value="/opt/applog/proj-modul-user.log" />
+        <param name="File" value="/tmp/proj-modul-user.log" />
         <param name="DatePattern" value="'.'yyyy-MM-dd" />
         <param name="append" value="true" />
         <!-- 512 Byte为一个写单元，提高日志写入文件的效率
