@@ -1,6 +1,4 @@
 /* 
- * Copyright (C) 2012-2014 TravelSky Technology Limited.
- * 
  * == Mlf4j (Monitoring Logging Facade for Java) ==
  * ============为监控而生的通用日志工具库===========
  * Version 1.0
