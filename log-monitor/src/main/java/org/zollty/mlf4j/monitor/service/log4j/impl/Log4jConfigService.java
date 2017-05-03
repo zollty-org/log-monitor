@@ -254,9 +254,7 @@ public class Log4jConfigService implements ILog4jConfigService {
         return ret.toString();
     }
     
-    /* (non-Javadoc)
-     * @see com.travelsky.mlf4j.monitor.service.log4j.ILog4jConfigService#showConfigFileContent()
-     */
+
     @Override
     public String showConfigFileContent() throws MlfI18nException {
         try {
@@ -272,9 +270,6 @@ public class Log4jConfigService implements ILog4jConfigService {
         }
     }
 
-    /* (non-Javadoc)
-     * @see com.travelsky.mlf4j.monitor.service.log4j.ILog4jConfigService#refreshLog4jConfig(java.lang.String)
-     */
     @Override
     public void refreshLog4jConfig(String configStr) throws MlfI18nException {
        doConfigure(configStr);
