@@ -4,8 +4,6 @@
  * == Mlf4j (Monitoring Logging Facade for Java) ==
  * ============为监控而生的通用日志工具库===========
  * Version 1.0
- * Author(s): 
- * Zollty Tsou (zouty@travelsky.com, http://blog.csdn.net/zollty)
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * you may not use this file except in compliance with the License.
