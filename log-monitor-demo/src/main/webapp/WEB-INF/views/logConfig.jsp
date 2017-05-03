@@ -19,14 +19,14 @@ String path = request.getContextPath();
 		<div style="color:red">
 			<strong>log4j中的RootLoger[根日志记录器]：</strong>&nbsp;&nbsp;所有普通的Logger的parent都是它，一般情况我们系统创建的Logger对象都是委托RootLogger把日志记录到appender中去的。
 			<br/><strong>日志信息输出的流向是:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			普通的Logger(如:com.travelsky.User)--n:1-- > RootLogger[单例]--1:n--->Appender(目的源如:控制台)
+			普通的Logger(如:com.demo.User)--n:1-- > RootLogger[单例]--1:n--->Appender(目的源如:控制台)
 			<br/><strong>普通的Logger、RootLogger、Appender：</strong>都有自己的日志级别开关，用于控制经过自己这边日志信息输出。如: 如果把RootLogger的日志级别设置为OFF，那么就所有的日志都不记录了。除非普通的Logger设置了自己的Appender。
 		</div>
 	
 		<table border="1" width="80%" bgcolor="#E8E8E8" cellpadding="0" bordercolor="#0000FF" bordercolorlight="#7D7DFF" bordercolordark="#0000A0">
 			<form name="" action="<%=path%>/logcfg.cfg" method="post">
 				<tr>
-				   <td><input type="text" value="<c:out value='${param.queryArg}' escapeXml='true' />" name="queryArg" size="50"/>输入日志名称,如:com.travelsky</td>
+				   <td><input type="text" value="<c:out value='${param.queryArg}' escapeXml='true' />" name="queryArg" size="50"/>输入日志名称,如:com.demo</td>
 				   <td><input type="submit" value="查询" /></td>
 				</tr>
 			</form>
